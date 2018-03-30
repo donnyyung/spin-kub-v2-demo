@@ -30,4 +30,5 @@ spec:
             port: 8000
         envFrom:
         - configMapRef:
-            name: spinnaker-demo-config
+            name: configmap
+          name: spinnaker-demo-config
