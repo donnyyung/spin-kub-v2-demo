@@ -31,7 +31,7 @@ spec:
     spec:
       containers:
       - name: primary
-        image: index.docker.io/lwander/spin-kub-v2-demo
+        image: docker.artifactory.dev.adnxs.net/dyung/test-app-k8s-v2:0.0.2
         ports:
         - containerPort: 8000
         readinessProbe:
