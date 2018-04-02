@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: spinnaker-demo-config
-  namespace: testapp
+  namespace: '${ parameters.namespace }'
 data:
   NEW_FEATURE: "true"
 
@@ -12,11 +12,12 @@ apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
   name: spinnaker-demo
-  namespace: testapp
+  namespace: '${ parameters.namespace }'
   labels:
     source: demo
     stack: frontend
     app: spinnaker
+    env: '${ parameters.env }'
 spec:
   replicas: 1
   selector:
@@ -28,6 +29,7 @@ spec:
       labels:
         source: demo
         app: spinnaker
+        env: '${ parameters.env }'
     spec:
       containers:
       - name: primary
@@ -48,11 +50,12 @@ kind: Service
 apiVersion: v1
 metadata:
   name: spinnaker-demo
-  namespace: testapp
+  namespace: '${ parameters.namespace }'
 spec:
   selector:
     source: demo
     app: spinnaker
+    env: '${ parameters.env }'
   ports:
   - protocol: TCP
     port: 80
